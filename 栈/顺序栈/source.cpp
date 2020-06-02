@@ -11,7 +11,7 @@ public:
 	void pop();
 	void getTop();
 private:
-	int s_top;	    //栈顶指针
+	int s_top;	    //栈顶位置
 	int s_data[maxsize];//数据域
 };
 
@@ -74,7 +74,7 @@ int main(){
 	for (int i = 0; i < 5; i++) {
 		a.getTop();
 		a.pop();
-	
 	}
-
+	
+	return 0;
 }
