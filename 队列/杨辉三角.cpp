@@ -1,5 +1,5 @@
 #include<iostream>
-#define maxsize 10
+#define maxsize 100
 using namespace std;
 
 class CirQueue {
