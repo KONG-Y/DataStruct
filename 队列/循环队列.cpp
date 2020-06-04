@@ -44,7 +44,7 @@ bool CirQueue::isFull() {
 //获得队头元素
 int CirQueue::get_front() {
 	if (!isEmpty()) {
-		front = (front + 1) % maxsize;
+		front = (front + 1) % maxsize;//队头没有元素，需加1
 		return p_data[front];
 	}
 }
@@ -52,7 +52,7 @@ int CirQueue::get_front() {
 //入队
 void CirQueue::append(int value) {
 	if (!isFull()) {
-		rear = (rear + 1) % maxsize;
+		rear = (rear + 1) % maxsize;//队尾指向最后元素
 		p_data[rear]=value;
 	}
 }
@@ -60,7 +60,7 @@ void CirQueue::append(int value) {
 //出队
 int CirQueue::serve() {
 	if (!isEmpty()) {
-		front = (front + 1) % maxsize;
+		front = (front + 1) % maxsize;//队头没有元素，需加1
 		return p_data[front];
 	}
 }
