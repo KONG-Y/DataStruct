@@ -35,7 +35,7 @@ int list::Get_element(const int index)const {
 void list::Insert(const int index, const int value) {
 	if (count != maxlen) {						 //未溢出
 		if (index >= 1 && index < Length() + 1) {		 //符合后移范围
-			for (int i = Length() - 1; i >= index - 1; i--) {//位置后移（插在index位置前面，所以 i >= index - 1）
+			for (int i = Length() - 1; i >= index; i--) {//位置后移
 				data[i + 1] = data[i];
 			}
 		}
