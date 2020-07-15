@@ -10,15 +10,15 @@ typedef struct Node
 class Stack
 {
 public:
-	Stack();			//构造
-	~Stack();			//析构
-	int isEmpty();      //空栈判断
-	void Push(int data);//入栈
-	int Pop();			//出栈
-	void Reverse();
+	Stack();		//构造
+	~Stack();		//析构
+	int isEmpty();      	//空栈判断
+	void Push(int data);	//入栈
+	int Pop();		//出栈
+	void Reverse();		//倒置
 	void Foreach();		//遍历
 private:
-	Node *top;			//已栈顶作为链表的头节点
+	Node *top;		//已栈顶作为链栈的头节点
 };
 
 int Stack::isEmpty()
@@ -86,15 +86,15 @@ int Stack::Pop()
 //倒置链栈
 void Stack::Reverse() 
 {
-	Node * u;			//当前结点
+	Node * u;		//当前结点
 	Node *p = NULL;		//上一结点
-	Node *L = top->next;//下一结点
+	Node *L = top->next;	//下一结点
 
 	while (L!= NULL) 
 	{
 		u = L;		//当前结点移动到下一结点
-		L = L->next;//下一结点下移
-		u->next = p;//当前结点链接到上一结点
+		L = L->next;	//下一结点下移
+		u->next = p;	//当前结点链接到上一结点
 		p = u;		//上一结点移动到下一结点（当前结点位置）
 	}
 	top->next = p;//栈头链接到栈底
@@ -119,11 +119,8 @@ int main()
 	for (int i = 0; i < 5; i++) {
 		a.Push(i);
 	}
-
 	a.Foreach();
 	a.Reverse();
 	a.Foreach();
-
-
 	return 0;
 }
