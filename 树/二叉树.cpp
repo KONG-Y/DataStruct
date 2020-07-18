@@ -12,12 +12,12 @@ class BinaryTree{
 public:
 	BinaryTree();
 	~BinaryTree();
-	Node* Create(Node *p);		  //构建二叉树（先序顺序）
+	Node* Create(Node *p);		//构建二叉树（先序顺序）
 	void Preorder(Node *root);	//先序遍历
-	void Inorder(Node *root);	  //中序遍历
+	void Inorder(Node *root);	//中序遍历
 	void Postorder(Node *root);	//后序遍历
-	int maxDepth(Node *p);		  //二叉树的深度/高度
-	Node* Root();				        //获得根结点
+	int maxDepth(Node *p);		//二叉树的深度/高度
+	Node* Root();			//获得根结点
 private:
 	Node *root;
 };
