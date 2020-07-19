@@ -14,18 +14,17 @@ class BinaryTree {
 public:
 	BinaryTree();
 	~BinaryTree();
-	Node* Create(Node *p);				//构建二叉树（先序顺序）
-	void Preorder(Node *root);			//先序遍历
-	void Inorder(Node *root);			//中序遍历
-	void Postorder(Node *root);			//后序遍历
+	Node* Create(Node *p);			//构建二叉树（先序顺序）
+	void Preorder(Node *root);		//先序遍历
+	void Inorder(Node *root);		//中序遍历
+	void Postorder(Node *root);		//后序遍历
 	void PreThread(Node *p, Node*&pre);	//先序线索化
 	void InThread(Node *p, Node*&pre);	//中序线索化
-	void PostThread(Node *p, Node*&pre);//后序线索化
+	void PostThread(Node *p, Node*&pre);	//后序线索化
 	void createInThread(Node *root);	//创建中序线索二叉树
-	Node *First(Node *p);
-	Node *Next(Node *p);
-	
-	int maxDepth(Node *p);		//二叉树的深度/高度
+	Node *First(Node *p);			//中序前驱
+	Node *Next(Node *p);			//中序后继
+	int maxDepth(Node *p);			//二叉树的深度/高度
 	Node* Root();				//获得根结点
 private:
 	Node *root;
