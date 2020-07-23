@@ -26,12 +26,12 @@ public:
 	ALGraph(char vertexs[], int vNum, int aNum);
 	void DFS(int num);	//深度优先搜索遍历
 	void DFS_Foreach();	//整个图的深度优先搜索遍历
-	void BFS();			//广度优先搜索遍历
+	void BFS();		//广度优先搜索遍历
 	void Foreach();
 private:
-	VertexNode adjlist[MAXSIZE];//顶点数组
-	int vertexNum;				//顶点数
-	int arcNum;					//边数
+	VertexNode adjlist[MAXSIZE];	//顶点数组
+	int vertexNum;			//顶点数
+	int arcNum;			//边数
 	bool visited[MAXSIZE];		//已访问结点标志数组
 };
 void ALGraph::Foreach()
@@ -171,6 +171,6 @@ int main()
 	a.Foreach();
 	
 	a.DFS_Foreach();//深度优先搜索遍历
-	a.BFS();		//广度优先搜索遍历
+	a.BFS();	//广度优先搜索遍历
 	return 0;
 }
