@@ -15,7 +15,7 @@ typedef struct ArcNode
 typedef struct VertexNode
 {
 	char vertex;		//顶点值
-	int count;			//入度值
+	int count;		//入度值
 	ArcNode* firstedge;	//第一个邻边顶点
 }VertexNode;
 
@@ -27,9 +27,9 @@ public:
 	int TopSort();			//拓扑排序
 	void Foreach();			//遍历每个顶点的邻近顶点
 private:
-	VertexNode adjlist[MAXSIZE];//顶点数组
-	int vertexNum;				//顶点数
-	int arcNum;					//边数
+	VertexNode adjlist[MAXSIZE];	//顶点数组
+	int vertexNum;			//顶点数
+	int arcNum;			//边数
 	bool visited[MAXSIZE];		//已访问结点标志数组
 };
 
@@ -70,8 +70,8 @@ ALGraph::ALGraph(char vertexs[],int vNum,int aNum )
 		ArcNode *s=new ArcNode;
 		s->adjvex = j;
 		s->next = adjlist[i].firstedge;	//新添加的邻边顶点的下一顶点为头顶点
-		adjlist[i].firstedge = s;		//头顶点变为新添加的邻边顶点
-		adjlist[j].count++;				//被连接的顶点入度+1
+		adjlist[i].firstedge = s;	//头顶点变为新添加的邻边顶点
+		adjlist[j].count++;		//被连接的顶点入度+1
 	}
 
 }
@@ -93,8 +93,8 @@ int ALGraph::TopSort() {
 	}
 	while (top != -1) 
 	{
-		i = stack[top--];		//顶点出栈
-		n++;					//出栈顶点数量
+		i = stack[top--];	//顶点出栈
+		n++;			//出栈顶点数量
 		cout << i << " ";
 		p = adjlist[i].firstedge;//出栈顶点的第一个邻边顶点
 		
