@@ -10,21 +10,23 @@ typedef struct Node {
 	Node *right;
 }Node;
 
-class BinaryTree{
+
+class BinaryTree {
 public:
 	BinaryTree();
 	~BinaryTree();
-	Node* Create(Node *p);		//构建二叉树（先序顺序）
-	void Preorder(Node *root);	//先序遍历
-	void Inorder(Node *root);	//中序遍历
-	void Postorder(Node *root);	//后序遍历
-	void Preorder_un(Node*root);	//先序遍历(非递归)
-	void Inorder_un(Node *root);	//中序遍历(非递归)
-	void Postorder_un(Node *root);	//后序遍历(非递归)
-	int maxDepth(Node *p);		//二叉树的深度/高度
-	Node* Root();			//获得根结点
+	Node* Create(Node* p);			//构建二叉树（先序顺序）
+	void Preorder(Node* root);		//先序遍历
+	void Inorder(Node* root);		//中序遍历
+	void Postorder(Node* root);		//后序遍历
+	void Preorder_un(Node* root);	//先序遍历(迭代法)
+	void Inorder_un(Node* root);	//中序遍历(迭代法)
+	void Postorder_un(Node* root);	//后序遍历(迭代法)
+	void LevelOrder(Node* root);	//层序遍历（迭代法）
+	int maxDepth(Node* p);			//二叉树的深度/高度
+	Node* Root();					//获得根结点
 private:
-	Node *root;
+	Node* root;
 };
 
 BinaryTree::BinaryTree() {
@@ -35,14 +37,14 @@ BinaryTree::~BinaryTree() {
 }
 
 
-int BinaryTree::maxDepth(Node*p) {
-	if (p == NULL)return 0;
+int BinaryTree::maxDepth(Node* p) {
+	if (p == nullptr)return 0;
 	int left = maxDepth(p->left) + 1;
 	int right = maxDepth(p->right) + 1;
 	if (left > right) {
-		return left; 
+		return left;
 	}
-	else { 
+	else {
 		return right;
 	}
 }
@@ -52,11 +54,11 @@ Node* BinaryTree::Root() {
 
 
 //创建二叉树(先序顺序)
-Node* BinaryTree::Create(Node *p) {
+Node* BinaryTree::Create(Node* p) {
 	char data;
 	cin >> data;
 	if (data == '#') {//一个#代表一个结点为NULL,叶子结点要两个#
-		p = NULL;
+		p = nullptr;
 	}
 	else
 	{
@@ -68,21 +70,21 @@ Node* BinaryTree::Create(Node *p) {
 	return p;
 }
 
-//先序遍历(非递归)
-void BinaryTree::Preorder_un(Node *root) {
-	if (root != NULL) {
-		Node * Stack[maxSize];//定义栈
+//先序遍历(迭代法)
+void BinaryTree::Preorder_un(Node* root) {
+	if (root != nullptr) {
+		Node* Stack[maxSize];//定义栈
 		int top = -1;//栈顶
-		Node *p;
+		Node* p;
 		Stack[++top] = root;
 
 		while (top != -1) {
 			p = Stack[top--];
-			cout << p->data<<" ";
-			if (p->right != NULL) {//右孩子先入栈（先进后出,左孩子比右孩子先出）
+			cout << p->data << " ";
+			if (p->right != nullptr) {//右孩子先入栈（先进后出,左孩子比右孩子先出）
 				Stack[++top] = p->right;
 			}
-			if (p->left != NULL) {//左孩子后入栈
+			if (p->left != nullptr) {//左孩子后入栈
 				Stack[++top] = p->left;
 			}
 		}
@@ -91,16 +93,16 @@ void BinaryTree::Preorder_un(Node *root) {
 
 }
 
-//中序遍历(非递归)
-void BinaryTree::Inorder_un(Node *root) {
-	if (root != NULL) {
-		Node *Stack[maxSize];
+//中序遍历(迭代法)
+void BinaryTree::Inorder_un(Node* root) {
+	if (root != nullptr) {
+		Node* Stack[maxSize];
 		int top = -1;
-		
-		Node *p=root;
-		
-		while (top != -1 || p != NULL) {
-			while (p != NULL) {//当前结点作为根结点进行中序遍历 (每个结点可当作局部的树来遍历)
+
+		Node* p = root;
+
+		while (top != -1 || p != nullptr) {
+			while (p != nullptr) {//当前结点作为根结点进行中序遍历 (每个结点可当作局部的树来遍历)
 				Stack[++top] = p;
 				p = p->left;
 			}
@@ -113,24 +115,24 @@ void BinaryTree::Inorder_un(Node *root) {
 	}
 }
 
-//后序遍历(非递归)
-void BinaryTree::Postorder_un(Node *root) {
-	if (root != NULL) {
-		Node *Stack1[maxSize];//逆后序序列栈
+//后序遍历(迭代法)
+void BinaryTree::Postorder_un(Node* root) {
+	if (root != nullptr) {
+		Node* Stack1[maxSize];//逆后序序列栈
 		int top1 = -1;
-		Node *Stack2[maxSize];//后序列栈
+		Node* Stack2[maxSize];//后序列栈
 		int top2 = -1;
-		
-		Node*p = NULL;
+
+		Node* p = nullptr;
 		Stack1[++top1] = root;
-		
+
 		while (top1 != -1) {//逆后序遍历 （先序遍历左右孩子遍历顺序互换）
 			p = Stack1[top1--];
 			Stack2[++top2] = p;
-			if (p->left != NULL) {//左孩子先入栈
+			if (p->left != nullptr) {//左孩子先入栈
 				Stack1[++top1] = p->left;
 			}
-			if (p->right != NULL) {//右孩子后入栈
+			if (p->right != nullptr) {//右孩子后入栈
 				Stack1[++top1] = p->right;
 			}
 		}
@@ -141,30 +143,52 @@ void BinaryTree::Postorder_un(Node *root) {
 	}
 }
 
-//先序遍历
-void BinaryTree::Preorder(Node *p) {
-	if (p != NULL) {
+//先序遍历（递归法）
+void BinaryTree::Preorder(Node* p) {
+	if (p != nullptr) {
 		cout << p->data << " ";
 		Preorder(p->left);
 		Preorder(p->right);
 	}
 }
 
-//中序遍历
-void BinaryTree::Inorder(Node *p) {
-	if (p != NULL) {
+//中序遍历（递归法）
+void BinaryTree::Inorder(Node* p) {
+	if (p != nullptr) {
 		Inorder(p->left);
 		cout << p->data << " ";
 		Inorder(p->right);
 	}
 }
 
-//后序遍历
-void BinaryTree::Postorder(Node *p) {
-	if (p != NULL) {
+//后序遍历（递归法）
+void BinaryTree::Postorder(Node* p) {
+	if (p != nullptr) {
 		Postorder(p->left);
 		Postorder(p->right);
 		cout << p->data << " ";
+	}
+}
+
+//层序遍历（迭代法）
+void BinaryTree::LevelOrder(Node* root) {
+	if (root != nullptr) {
+		queue<Node*>que;
+		que.push(root);
+		vector<vector<int>>result;
+		while (!que.empty()) {
+			int size = que.size();
+			vector<int>vec;
+			for (int i = 0; i < size; ++i) {
+				Node* node = que.front();
+				que.pop();
+				vec.push_back(node->data);
+				cout << node->data << " ";
+				if (node->left)que.push(node->left);
+				if (node->right)que.push(node->right);
+			}
+			result.push_back(vec);
+		}
 	}
 }
 
@@ -172,12 +196,14 @@ int main() {
 	cout << "创建二叉树" << endl;
 	BinaryTree a;
 	cout << "树的深度: " << a.maxDepth(a.Root());
-	cout <<	endl<< "前序遍历" << endl;
+	cout << endl << "前序遍历" << endl;
 	a.Preorder_un(a.Root());
 	cout << endl << "中序遍历" << endl;
 	a.Inorder_un(a.Root());
 	cout << endl << "后序遍历" << endl;
 	a.Postorder_un(a.Root());
+	cout << endl << "层序遍历" << endl;
+	a.LevelOrder(a.Root());
 	return 0;
 
 }
