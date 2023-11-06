@@ -10,8 +10,8 @@ using namespace std;
 
 //归并
 void Merge(vector<int>& nums, int start, int mid, int end) {
-	int left = start;	//左索引
-	int right = mid + 1;  	//右索引
+	int left = start;	//左索引，左范围[0,mid]
+	int right = mid + 1;  	//右索引，右范围[mid+1,end]
   
 	vector<int>aux(nums); //辅助数组
 	
