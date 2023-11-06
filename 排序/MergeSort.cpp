@@ -1,6 +1,13 @@
 #include<vector>
 #include<iostream>
 using namespace std;
+
+/*-------------------------------------归并排序---------------------------------------*/
+//时间复杂度：最好O(n)，最差O(nlogn)
+//空间复杂度：O(n)
+//稳定
+
+
 //归并
 void Merge(vector<int>& nums, int start, int mid, int end) {
 	int left = start;	//左索引
