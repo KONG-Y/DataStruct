@@ -30,3 +30,9 @@ void QuickSort(vector<int>& nums, int start, int end) {
 	QuickSort(nums, start, right - 1);
 	QuickSort(nums, right + 1, end);
 }
+int main() {
+	vector<int>nums = { 5,7,6,0,4,11,3,4,88,65,4,22,1,33 };
+	QuickSort(nums, 0, nums.size() - 1);
+	for (auto i : nums)cout << i << ",";
+	return 0;
+}
